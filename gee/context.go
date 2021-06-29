@@ -21,7 +21,6 @@ type Context struct {
 }
 
 func (c *Context) Param(key string) string {
-	fmt.Println("????????????????", c.Params)
 	value, _ := c.Params[key]
 	return value
 }
