@@ -21,3 +21,9 @@ _SIMPE WEB FRAMEWORK IMPLEMENT BY GO_
 **Middleware**
 
 实现中间件
+
+**HTML Template**
+
+实现静态资源服务(Static Resource)
+
+支持HTML模板渲染
