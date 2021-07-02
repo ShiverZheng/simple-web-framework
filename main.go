@@ -5,7 +5,7 @@ package main
 $ curl http://localhost:9999/date
 <html>
 <body>
-    <p>hello, gee</p>
+    <p>hello, mmmm</p>
     <p>Date: 2019-08-17</p>
 </body>
 </html>
@@ -17,7 +17,7 @@ $ curl http://localhost:9999/students
 <html>
 <body>
     <p>hello, gee</p>
-    <p>0: Geektutu is 20 years old</p>
+    <p>0: kkkk is 20 years old</p>
     <p>1: Jack is 22 years old</p>
 </body>
 </html>
@@ -25,7 +25,7 @@ $ curl http://localhost:9999/students
 
 /*
 (3) serve static files
-$ curl http://localhost:9999/assets/css/geektutu.css
+$ curl http://localhost:9999/assets/css/tmpl.css
 p {
     color: orange;
     font-weight: 700;
@@ -53,8 +53,7 @@ func FormatAsDate(t time.Time) string {
 }
 
 func main() {
-	r := gee.New()
-	r.Use(gee.Logger())
+	r := gee.Default()
 	r.SetFuncMap(template.FuncMap{
 		"FormatAsDate": FormatAsDate,
 	})
@@ -66,6 +65,13 @@ func main() {
 	r.GET("/", func(c *gee.Context) {
 		c.HTML(http.StatusOK, "css.tmpl", nil)
 	})
+
+	// index out of range for testing Recovery()
+	r.GET("/panic", func(c *gee.Context) {
+		names := []string{"kkkkk"}
+		c.String(http.StatusOK, names[100])
+	})
+
 	r.GET("/students", func(c *gee.Context) {
 		c.HTML(http.StatusOK, "arr.tmpl", gee.H{
 			"title":  "kkkk",
